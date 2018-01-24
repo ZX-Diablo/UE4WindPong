@@ -22,6 +22,10 @@ protected:
 	virtual void BeginPlay () override;
 
 private:
+	void TurnForward (float AxisValue);
+	void TurnRight (float AxisValue);
+
+private:
 	/** Pad collision box (root component) */
 	UPROPERTY(VisibleAnywhere)
 	class UBoxComponent* CollisionBox;
@@ -30,6 +34,10 @@ private:
 	UPROPERTY(VisibleAnywhere)
 	class UStaticMeshComponent* StaticMesh;
 
+	/** Pad camera spring arm */
+	UPROPERTY(VisibleAnywhere)
+	class USpringArmComponent* SpringArm;
+
 	/** Pad camera */
 	UPROPERTY(VisibleAnywhere)
 	class UCameraComponent* Camera;
@@ -37,17 +45,17 @@ private:
 private:
 	/** Default size of the Pad's collision box */
 	UPROPERTY(VisibleDefaultsOnly, Category = "Pad Defaults")
-	FVector CollisionBoxExtent = FVector(100.0f, 100.0f, 5.0f);
+	FVector CollisionBoxExtent = FVector(200.0f, 200.0f, 5.0f);
 
 	/** Default size of the Pad's cylinder mesh (before scaling) */
 	UPROPERTY(VisibleDefaultsOnly, Category = "Pad Defaults")
 	FVector CylinderBoundingBox = FVector(50.0f, 50.0f, 40.0f);
 
-	/** Default camera position */
+	/** Default camera distance (spring arm length) */
 	UPROPERTY(VisibleDefaultsOnly, Category = "Pad Defaults|Camera")
-	FVector CameraLocation = FVector(-200.0f, 0.0f, 50.0f);
+	float CameraDistance = 500.0f;
 
-	/** Camera view point relative location */
+	/** Default camera pitch angle in degrees */
 	UPROPERTY(VisibleDefaultsOnly, Category = "Pad Defaults|Camera")
-	FVector CameraViewPoint = FVector(200.0f, 0.0f, 5.0f);
+	float CameraAngle = -20.0f;
 };
