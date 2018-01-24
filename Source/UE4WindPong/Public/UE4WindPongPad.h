@@ -43,12 +43,16 @@ private:
 	class UCameraComponent* Camera;
 
 private:
+	/** Pad's turn angle limit in degrees */
+	UPROPERTY(EditAnywhere, Category = "Pad Parameters")
+	float TurnAngleLimit = 30.0f;
+
 	/** Default size of the Pad's collision box */
-	UPROPERTY(VisibleDefaultsOnly, Category = "Pad Defaults")
+	UPROPERTY(VisibleDefaultsOnly, Category = "Pad Defaults|Mesh")
 	FVector CollisionBoxExtent = FVector(200.0f, 200.0f, 5.0f);
 
 	/** Default size of the Pad's cylinder mesh (before scaling) */
-	UPROPERTY(VisibleDefaultsOnly, Category = "Pad Defaults")
+	UPROPERTY(VisibleDefaultsOnly, Category = "Pad Defaults|Mesh")
 	FVector CylinderBoundingBox = FVector(50.0f, 50.0f, 40.0f);
 
 	/** Default camera distance (spring arm length) */

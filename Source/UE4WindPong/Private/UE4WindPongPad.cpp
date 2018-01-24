@@ -70,10 +70,18 @@ void AUE4WindPongPad::BeginPlay ()
 
 void AUE4WindPongPad::TurnForward (float AxisValue)
 {
-	this->AddActorWorldRotation(FRotator(-AxisValue, 0.0f, 0.0f));
+	FRotator NewRotation = this->GetActorRotation();
+
+	NewRotation.Pitch = FMath::ClampAngle(NewRotation.Pitch - AxisValue, -this->TurnAngleLimit, this->TurnAngleLimit);
+
+	this->SetActorRotation(NewRotation);
 }
 
 void AUE4WindPongPad::TurnRight (float AxisValue)
 {
-	this->AddActorWorldRotation(FRotator(0.0f, 0.0f, AxisValue));
+	FRotator NewRotation = this->GetActorRotation();
+
+	NewRotation.Roll = FMath::ClampAngle(NewRotation.Roll + AxisValue, -this->TurnAngleLimit, this->TurnAngleLimit);
+
+	this->SetActorRotation(NewRotation);
 }
