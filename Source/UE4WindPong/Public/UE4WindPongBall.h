@@ -16,6 +16,12 @@ public:
 
 	virtual void Tick (float DeltaTime) override;
 
+	/**
+	 * Apply wind force to the Ball
+	 * @param WindVelocity Direction and strength of the wind
+	 */
+	void AddWind (const FVector& WindVelocity);
+
 protected:
 	virtual void BeginPlay () override;
 

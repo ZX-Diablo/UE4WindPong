@@ -44,6 +44,14 @@ void AUE4WindPongBall::Tick (float DeltaTime)
 	Super::Tick(DeltaTime);
 }
 
+void AUE4WindPongBall::AddWind (const FVector& WindVelocity)
+{
+	if (this->Movement)
+	{
+		this->Movement->Velocity += WindVelocity;
+	}
+}
+
 void AUE4WindPongBall::BeginPlay ()
 {
 	Super::BeginPlay();
