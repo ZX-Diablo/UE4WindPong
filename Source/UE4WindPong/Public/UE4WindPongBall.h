@@ -20,6 +20,10 @@ protected:
 	virtual void BeginPlay () override;
 
 private:
+	UFUNCTION()
+	void OnFellOutWorld (AActor* Actor);
+
+private:
 	/** Ball collision sphere (root component) */
 	UPROPERTY(VisibleAnywhere)
 	class USphereComponent* CollisionSphere;

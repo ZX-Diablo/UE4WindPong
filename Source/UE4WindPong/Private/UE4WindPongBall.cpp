@@ -7,6 +7,8 @@
 
 #include "ConstructorHelpers.h"
 
+#include "Engine/World.h"
+
 #include "GameFramework/ProjectileMovementComponent.h"
 
 AUE4WindPongBall::AUE4WindPongBall ()
@@ -45,4 +47,11 @@ void AUE4WindPongBall::Tick (float DeltaTime)
 void AUE4WindPongBall::BeginPlay ()
 {
 	Super::BeginPlay();
+
+	this->OnDestroyed.AddDynamic(this, &AUE4WindPongBall::OnFellOutWorld);
+}
+
+void AUE4WindPongBall::OnFellOutWorld (AActor* Actor)
+{
+	this->GetWorld()->GetFirstPlayerController()->RestartLevel();
 }
