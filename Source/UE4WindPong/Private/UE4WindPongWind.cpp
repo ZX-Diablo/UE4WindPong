@@ -21,21 +21,41 @@ void AUE4WindPongWind::Tick (float DeltaTime)
 {
 	Super::Tick(DeltaTime);
 
+	if (this->TimeElapsed <= 0)
+	{
+		this->CurrentVelocity = this->GenerateVelocity();
+		this->CurrentDuration = this->GenerateDuration();
+		this->TimeElapsed = this->CurrentDuration;
+	}
+
 	TArray<AActor*> Balls;
 
 	this->GetOverlappingActors(Balls, AUE4WindPongBall::StaticClass());
 	for (const auto& Ball : Balls)
 	{
-		FVector WindVelocity = FMath::VRand();
-
-		WindVelocity.Z = 0.0f;
-		WindVelocity *= 5.0f;
-
-		Cast<AUE4WindPongBall>(Ball)->AddWind(WindVelocity);
+		Cast<AUE4WindPongBall>(Ball)->AddWind(this->CurrentVelocity);
 	}
+
+	this->TimeElapsed -= DeltaTime;
 }
 
 void AUE4WindPongWind::BeginPlay ()
 {
 	Super::BeginPlay();
+}
+
+FVector AUE4WindPongWind::GenerateVelocity () const
+{
+	FVector WindVelocity = FMath::VRand();
+	float Strength = FMath::FRandRange(this->MinStrength, this->MaxStrength);
+
+	WindVelocity *= Strength;
+	WindVelocity.Z = 0.0f;
+
+	return WindVelocity;
+}
+
+float AUE4WindPongWind::GenerateDuration () const
+{
+	return FMath::FRandRange(this->MinDuration, this->MaxDuration);
 }
