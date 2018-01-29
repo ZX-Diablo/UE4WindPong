@@ -22,6 +22,10 @@ protected:
 	virtual void BeginPlay () override;
 
 private:
+	UFUNCTION()
+	void OnHitByBall (AActor* SelfActor, AActor* OtherActor, FVector NormalImpulse, const FHitResult& Hit);
+
+private:
 	void TurnForward (float AxisValue);
 	void TurnRight (float AxisValue);
 

@@ -8,9 +8,12 @@
 #include "Components/InputComponent.h"
 #include "Components/StaticMeshComponent.h"
 
+#include "ConstructorHelpers.h"
+
 #include "GameFramework/SpringArmComponent.h"
 
-#include "ConstructorHelpers.h"
+#include "Public/UE4WindPongBall.h"
+#include "Public/UE4WindPongPlayerControllerGame.h"
 
 AUE4WindPongPad::AUE4WindPongPad ()
 {
@@ -66,6 +69,7 @@ void AUE4WindPongPad::SetupPlayerInputComponent (UInputComponent* PlayerInputCom
 void AUE4WindPongPad::BeginPlay ()
 {
 	Super::BeginPlay();
+	this->OnActorHit.AddDynamic(this, &AUE4WindPongPad::OnHitByBall);
 }
 
 void AUE4WindPongPad::TurnForward (float AxisValue)
@@ -84,4 +88,14 @@ void AUE4WindPongPad::TurnRight (float AxisValue)
 	NewRotation.Roll = FMath::ClampAngle(NewRotation.Roll + AxisValue, -this->TurnAngleLimit, this->TurnAngleLimit);
 
 	this->SetActorRotation(NewRotation);
+}
+
+void AUE4WindPongPad::OnHitByBall (AActor* SelfActor, AActor* OtherActor, FVector NormalImpulse, const FHitResult& Hit)
+{
+	auto PlayerController = Cast<AUE4WindPongPlayerControllerGame>(this->GetController());
+
+	if (PlayerController && Cast<AUE4WindPongBall>(OtherActor))
+	{
+		PlayerController->HitByBall();
+	}
 }

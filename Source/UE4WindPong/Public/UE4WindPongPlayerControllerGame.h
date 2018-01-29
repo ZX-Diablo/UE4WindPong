@@ -14,4 +14,9 @@ class UE4WINDPONG_API AUE4WindPongPlayerControllerGame : public APlayerControlle
 {
 	GENERATED_BODY()
 
+public:
+	/**
+	 * Called by the pad when it hits the ball, updates player score
+	 */
+	void HitByBall ();
 };

@@ -11,6 +11,10 @@
 
 #include "GameFramework/ProjectileMovementComponent.h"
 
+#include "Kismet/GameplayStatics.h"
+
+#include "Sound/SoundBase.h"
+
 AUE4WindPongBall::AUE4WindPongBall ()
 {
 	this->PrimaryActorTick.bCanEverTick = true;
@@ -56,7 +60,16 @@ void AUE4WindPongBall::BeginPlay ()
 {
 	Super::BeginPlay();
 
+	this->Movement->OnProjectileBounce.AddDynamic(this, &AUE4WindPongBall::OnBounce);
 	this->OnDestroyed.AddDynamic(this, &AUE4WindPongBall::OnFellOutWorld);
+}
+
+void AUE4WindPongBall::OnBounce (const FHitResult& ImpactResult, const FVector& ImpactVelocity)
+{
+	if (this->BounceSound)
+	{
+		UGameplayStatics::PlaySoundAtLocation(this->GetWorld(), this->BounceSound, ImpactResult.ImpactPoint);
+	}
 }
 
 void AUE4WindPongBall::OnFellOutWorld (AActor* Actor)

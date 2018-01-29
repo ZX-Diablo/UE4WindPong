@@ -27,6 +27,9 @@ protected:
 
 private:
 	UFUNCTION()
+	void OnBounce (const FHitResult& ImpactResult, const FVector& ImpactVelocity);
+
+	UFUNCTION()
 	void OnFellOutWorld (AActor* Actor);
 
 private:
@@ -43,6 +46,10 @@ private:
 	class UProjectileMovementComponent* Movement;
 
 private:
+	/** Ball bounce sound */
+	UPROPERTY(EditAnywhere, Category = "Ball Parameters")
+	class USoundBase* BounceSound;
+
 	/** Default size of the Ball's collision sphere */
 	UPROPERTY(VisibleDefaultsOnly, Category = "Ball Defaults")
 	float CollisionSphereRadius = 20.0f;
