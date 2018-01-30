@@ -4,6 +4,8 @@
 
 #include "Engine/World.h"
 
+#include "UserWidget.h"
+
 #include "Public/UE4WindPongGameModeBase.h"
 #include "Public/UE4WindPongPlayerStateGame.h"
 
@@ -15,5 +17,19 @@ void AUE4WindPongPlayerControllerGame::HitByBall ()
 	if (GameMode && PlayerState)
 	{
 		PlayerState->AddScore(GameMode->GetScorePerHit());
+	}
+}
+
+void AUE4WindPongPlayerControllerGame::BeginPlay ()
+{
+	Super::BeginPlay();
+
+	if (this->HUDClass)
+	{
+		this->HUD = CreateWidget<UUserWidget>(this, this->HUDClass);
+		if (this->HUD)
+		{
+			this->HUD->AddToViewport();
+		}
 	}
 }
