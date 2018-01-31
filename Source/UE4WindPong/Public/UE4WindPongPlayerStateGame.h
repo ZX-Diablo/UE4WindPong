@@ -22,6 +22,11 @@ public:
 	void AddScore (float Score);
 
 public:
+	/** Current player's score */
 	UPROPERTY(VisibleInstanceOnly, BlueprintReadOnly)
 	float CurrentScore;
+
+	/** Current player's lives */
+	UPROPERTY(VisibleInstanceOnly, BlueprintReadOnly)
+	int32 CurrentLives;
 };

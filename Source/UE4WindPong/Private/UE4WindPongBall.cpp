@@ -15,6 +15,8 @@
 
 #include "Sound/SoundBase.h"
 
+#include "Public/UE4WindPongGameModeBase.h"
+
 AUE4WindPongBall::AUE4WindPongBall ()
 {
 	this->PrimaryActorTick.bCanEverTick = true;
@@ -74,5 +76,10 @@ void AUE4WindPongBall::OnBounce (const FHitResult& ImpactResult, const FVector& 
 
 void AUE4WindPongBall::OnFellOutWorld (AActor* Actor)
 {
-	this->GetWorld()->GetFirstPlayerController()->RestartLevel();
+	auto GameMode = this->GetWorld()->GetAuthGameMode<AUE4WindPongGameModeBase>();
+
+	if (GameMode)
+	{
+		GameMode->BallFellOutWorld();
+	}
 }

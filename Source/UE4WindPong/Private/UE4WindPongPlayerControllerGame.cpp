@@ -24,6 +24,8 @@ void AUE4WindPongPlayerControllerGame::BeginPlay ()
 {
 	Super::BeginPlay();
 
+	this->SetInputMode(FInputModeGameOnly());
+
 	if (this->HUDClass)
 	{
 		this->HUD = CreateWidget<UUserWidget>(this, this->HUDClass);
@@ -31,5 +33,12 @@ void AUE4WindPongPlayerControllerGame::BeginPlay ()
 		{
 			this->HUD->AddToViewport();
 		}
+	}
+
+	auto GameMode = this->GetWorld()->GetAuthGameMode<AUE4WindPongGameModeBase>();
+
+	if (GameMode)
+	{
+		GameMode->StartRound();
 	}
 }
