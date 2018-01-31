@@ -14,4 +14,38 @@ class UE4WINDPONG_API AUE4WindPongPlayerControllerMenu : public APlayerControlle
 {
 	GENERATED_BODY()
 
+public:
+	AUE4WindPongPlayerControllerMenu ();
+
+	/**
+	 * Show main menu
+	 */
+	UFUNCTION(BlueprintCallable, Category = "Interface")
+	void ShowMainMenu ();
+
+	/**
+	 * Show high scores menu
+	 */
+	UFUNCTION(BlueprintCallable, Category = "Interface")
+	void ShowHighScoresMenu ();
+
+protected:
+	virtual void BeginPlay () override;
+
+protected:
+	/** Main menu widget class */
+	UPROPERTY(EditAnywhere, BlueprintReadOnly)
+	TSubclassOf<UUserWidget> MainMenu;
+
+	/** High scores menu widget class */
+	UPROPERTY(EditAnywhere, BlueprintReadOnly)
+	TSubclassOf<UUserWidget> HighScoresMenu;
+
+private:
+	void ShowMenuHelper (TSubclassOf<UUserWidget> Menu);
+	void CloseCurrentMenu ();
+
+private:
+	UPROPERTY()
+	UUserWidget* CurrentMenu;
 };
