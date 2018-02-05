@@ -18,6 +18,12 @@ public:
 	AUE4WindPongPlayerControllerMenu ();
 
 	/**
+	 * Start the game (load game map)
+	 */
+	UFUNCTION(BlueprintCallable, Category = "Interface")
+	void StartGame ();
+
+	/**
 	 * Show main menu
 	 */
 	UFUNCTION(BlueprintCallable, Category = "Interface")

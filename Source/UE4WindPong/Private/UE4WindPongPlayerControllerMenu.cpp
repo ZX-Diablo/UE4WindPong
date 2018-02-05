@@ -2,11 +2,18 @@
 
 #include "Public/UE4WindPongPlayerControllerMenu.h"
 
+#include "Kismet/GameplayStatics.h"
+
 #include "UserWidget.h"
 
 AUE4WindPongPlayerControllerMenu::AUE4WindPongPlayerControllerMenu ()
 {
 	this->bShowMouseCursor = true;
+}
+
+void AUE4WindPongPlayerControllerMenu::StartGame ()
+{
+	UGameplayStatics::OpenLevel(this->GetWorld(), "GameMap");
 }
 
 void AUE4WindPongPlayerControllerMenu::ShowMainMenu ()
