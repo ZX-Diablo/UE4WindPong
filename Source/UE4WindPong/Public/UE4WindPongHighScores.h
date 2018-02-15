@@ -33,6 +33,13 @@ public:
 	UUE4WindPongHighScores ();
 
 	/**
+	 * Insert new high scores entry at given position and remove the last one
+	 * @param Position Position in high scores array, should be less than MaxEntries
+	 * @param Entry New entry value
+	 */
+	void InsertEntry (uint32 Position, const FUE4WindPongHighScoreEntry& Entry);
+
+	/**
 	 * Set value for high scores entry at given position
 	 * @param Position Position in high scores array, should be less than MaxEntries
 	 * @param Entry New entry value

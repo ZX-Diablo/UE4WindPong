@@ -4,6 +4,7 @@
 
 #include "Engine/World.h"
 
+#include "Public/UE4WindPongPlayerControllerGame.h"
 #include "Public/UE4WindPongPlayerStateGame.h"
 
 void AUE4WindPongGameModeBase::PostLogin (APlayerController* NewPlayer)
@@ -39,5 +40,9 @@ void AUE4WindPongGameModeBase::BallFellOutWorld ()
 		this->RestartPlayer(PlayerController);
 
 		this->StartRound();
+	}
+	else
+	{
+		Cast<AUE4WindPongPlayerControllerGame>(PlayerController)->EndGame();
 	}
 }

@@ -17,6 +17,14 @@ class UE4WINDPONG_API UUE4WindPongGameInstance : public UGameInstance
 
 public:
 	/**
+	 * Insert new high score and save
+	 * @param Position High score position
+	 * @param Entry High score value
+	 */
+	UFUNCTION(BlueprintCallable, Category = "High Scores")
+	void InsertHighScore (int32 Position, const FUE4WindPongHighScoreEntry& Entry);
+
+	/**
 	 * Set new high score and save
 	 * @param Position High score position
 	 * @param Entry High score value
