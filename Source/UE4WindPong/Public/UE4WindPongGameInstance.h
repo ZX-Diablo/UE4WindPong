@@ -25,7 +25,7 @@ public:
 	void InsertHighScore (int32 Position, const FUE4WindPongHighScoreEntry& Entry);
 
 	/**
-	 * Set new high score and save
+	 * Set existing high score and save
 	 * @param Position High score position
 	 * @param Entry High score value
 	 */

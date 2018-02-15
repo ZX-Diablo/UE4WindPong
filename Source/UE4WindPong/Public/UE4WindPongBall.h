@@ -14,8 +14,6 @@ class UE4WINDPONG_API AUE4WindPongBall : public AActor
 public:
 	AUE4WindPongBall ();
 
-	virtual void Tick (float DeltaTime) override;
-
 	/**
 	 * Apply wind force to the Ball
 	 * @param WindVelocity Direction and strength of the wind

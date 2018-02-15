@@ -16,9 +16,6 @@ public:
 
 	virtual void Tick (float DeltaTime) override;
 
-protected:
-	virtual void BeginPlay () override;
-
 private:
 	FVector GenerateVelocity () const;
 	float GenerateDuration () const;

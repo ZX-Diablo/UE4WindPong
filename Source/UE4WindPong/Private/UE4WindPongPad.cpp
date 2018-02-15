@@ -53,11 +53,6 @@ AUE4WindPongPad::AUE4WindPongPad ()
 	this->Camera->bUsePawnControlRotation = false;
 }
 
-void AUE4WindPongPad::Tick (float DeltaTime)
-{
-	Super::Tick(DeltaTime);
-}
-
 void AUE4WindPongPad::SetupPlayerInputComponent (UInputComponent* PlayerInputComponent)
 {
 	Super::SetupPlayerInputComponent(PlayerInputComponent);
@@ -69,6 +64,7 @@ void AUE4WindPongPad::SetupPlayerInputComponent (UInputComponent* PlayerInputCom
 void AUE4WindPongPad::BeginPlay ()
 {
 	Super::BeginPlay();
+
 	this->OnActorHit.AddDynamic(this, &AUE4WindPongPad::OnHitByBall);
 }
 

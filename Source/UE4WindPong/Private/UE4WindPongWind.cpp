@@ -39,11 +39,6 @@ void AUE4WindPongWind::Tick (float DeltaTime)
 	this->TimeElapsed -= DeltaTime;
 }
 
-void AUE4WindPongWind::BeginPlay ()
-{
-	Super::BeginPlay();
-}
-
 FVector AUE4WindPongWind::GenerateVelocity () const
 {
 	FVector WindVelocity = FMath::VRand();
